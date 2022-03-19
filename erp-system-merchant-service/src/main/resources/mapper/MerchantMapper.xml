@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.brave.erp.system.merchant.service.mapper.MerchantMapper">
+  <resultMap id="BaseResultMap" type="com.brave.erp.system.merchant.service.domain.Merchant">
+    <!--@mbg.generated-->
+    <!--@Table merchant-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="merchant_name" jdbcType="VARCHAR" property="merchantName" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="lng" jdbcType="VARCHAR" property="lng" />
+    <result column="lat" jdbcType="VARCHAR" property="lat" />
+    <result column="merchant_type" jdbcType="INTEGER" property="merchantType" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="register_channel" jdbcType="INTEGER" property="registerChannel" />
+    <result column="master_user_id" jdbcType="BIGINT" property="masterUserId" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+    <result column="add_by" jdbcType="VARCHAR" property="addBy" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="is_delete" jdbcType="BOOLEAN" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, merchant_name, address, lng, lat, merchant_type, `status`, register_channel, 
+    master_user_id, logo, add_by, add_time, update_by, update_time, `desc`, is_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from merchant
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectListByIds" parameterType="java.util.List" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from merchant
+    where id in
+    <foreach collection="list" index="index" item="id" open="(" close=")" separator=",">
+      #{id,jdbcType=BIGINT}
+    </foreach>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from merchant
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.brave.erp.system.merchant.service.domain.Merchant" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into merchant (merchant_name, address, lng, 
+      lat, merchant_type, `status`, 
+      register_channel, master_user_id, logo, 
+      add_by, add_time, update_by, 
+      update_time, `desc`, is_delete
+      )
+    values (#{merchantName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{lng,jdbcType=VARCHAR}, 
+      #{lat,jdbcType=VARCHAR}, #{merchantType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{registerChannel,jdbcType=INTEGER}, #{masterUserId,jdbcType=BIGINT}, #{logo,jdbcType=VARCHAR}, 
+      #{addBy,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{desc,jdbcType=VARCHAR}, #{isDelete,jdbcType=BOOLEAN}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.brave.erp.system.merchant.service.domain.Merchant" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into merchant
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="merchantName != null">
+        merchant_name,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="lng != null">
+        lng,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+      <if test="merchantType != null">
+        merchant_type,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="registerChannel != null">
+        register_channel,
+      </if>
+      <if test="masterUserId != null">
+        master_user_id,
+      </if>
+      <if test="logo != null">
+        logo,
+      </if>
+      <if test="addBy != null">
+        add_by,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="desc != null">
+        `desc`,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="merchantName != null">
+        #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantType != null">
+        #{merchantType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="registerChannel != null">
+        #{registerChannel,jdbcType=INTEGER},
+      </if>
+      <if test="masterUserId != null">
+        #{masterUserId,jdbcType=BIGINT},
+      </if>
+      <if test="logo != null">
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="addBy != null">
+        #{addBy,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="desc != null">
+        #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=BOOLEAN},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.brave.erp.system.merchant.service.domain.Merchant">
+    <!--@mbg.generated-->
+    update merchant
+    <set>
+      <if test="merchantName != null">
+        merchant_name = #{merchantName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null">
+        lng = #{lng,jdbcType=VARCHAR},
+      </if>
+      <if test="lat != null">
+        lat = #{lat,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantType != null">
+        merchant_type = #{merchantType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="registerChannel != null">
+        register_channel = #{registerChannel,jdbcType=INTEGER},
+      </if>
+      <if test="masterUserId != null">
+        master_user_id = #{masterUserId,jdbcType=BIGINT},
+      </if>
+      <if test="logo != null">
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="addBy != null">
+        add_by = #{addBy,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="desc != null">
+        `desc` = #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=BOOLEAN},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.brave.erp.system.merchant.service.domain.Merchant">
+    <!--@mbg.generated-->
+    update merchant
+    set merchant_name = #{merchantName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      lng = #{lng,jdbcType=VARCHAR},
+      lat = #{lat,jdbcType=VARCHAR},
+      merchant_type = #{merchantType,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      register_channel = #{registerChannel,jdbcType=INTEGER},
+      master_user_id = #{masterUserId,jdbcType=BIGINT},
+      logo = #{logo,jdbcType=VARCHAR},
+      add_by = #{addBy,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      `desc` = #{desc,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=BOOLEAN}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
