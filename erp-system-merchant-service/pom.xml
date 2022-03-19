@@ -106,6 +106,10 @@
             <artifactId>async-task</artifactId>
             <groupId>cn.ygzhangmfh.util.task</groupId>
         </dependency>
+        <dependency>
+            <groupId>com.brave</groupId>
+            <artifactId>dubbo-trace</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

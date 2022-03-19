@@ -29,6 +29,7 @@
         <dubbo.version>3.0.6</dubbo.version>
         <dubbo.api.doc.version>2.7.8.3</dubbo.api.doc.version>
         <spring.boot.version>2.6.4</spring.boot.version>
+        <dubbo.trace.version>0.0.1-SNAPSHOT</dubbo.trace.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -118,6 +119,11 @@
                 <artifactId>async-task</artifactId>
                 <groupId>cn.ygzhangmfh.util.task</groupId>
                 <version>1.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.brave</groupId>
+                <artifactId>dubbo-trace</artifactId>
+                <version>${dubbo.trace.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
