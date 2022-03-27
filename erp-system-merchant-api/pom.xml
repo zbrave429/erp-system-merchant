@@ -13,7 +13,7 @@
     <name>erp-system-merchant-api</name>
     <description>erp-system-merchant-api</description>
     <properties>
-        <java.version>17</java.version>
+        <java.version>1.8</java.version>
     </properties>
     <dependencies>
         <dependency>

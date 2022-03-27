@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.4</version>
+        <version>2.3.12.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <modules>
@@ -19,7 +19,7 @@
     <name>erp-system-merchant</name>
     <description>erp-system-merchant</description>
     <properties>
-        <java.version>17</java.version>
+        <java.version>1.8</java.version>
         <api.version>0.0.1-SNAPSHOT</api.version>
         <druid.version>1.2.8</druid.version>
         <mysql.version>8.0.28</mysql.version>

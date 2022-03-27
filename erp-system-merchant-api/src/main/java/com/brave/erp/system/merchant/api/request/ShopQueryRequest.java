@@ -4,7 +4,6 @@ import com.brave.erp.system.merchant.api.enums.ShopDataFieldEnum;
 import lombok.Data;
 import org.apache.dubbo.apidocs.annotations.RequestParam;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,7 +16,6 @@ import java.util.List;
 @Data
 public class ShopQueryRequest implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = -7802819835957092002L;
 
     @RequestParam("门店Id")

@@ -23,7 +23,7 @@
         </rollingPolicy>
         <encoder>
             <pattern>${log.file.pattern}</pattern>
-            <charset>${log.pattern}</charset>
+            <charset>${log.charset}</charset>
         </encoder>
     </appender>
 
@@ -37,7 +37,7 @@
         </rollingPolicy>
         <encoder>
             <pattern>${log.file.pattern}</pattern>
-            <charset>${log.pattern}</charset>
+            <charset>${log.charset}</charset>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
@@ -54,7 +54,7 @@
         </rollingPolicy>
         <encoder>
             <pattern>${log.file.pattern}</pattern>
-            <charset>${log.pattern}</charset>
+            <charset>${log.charset}</charset>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>INFO</level>

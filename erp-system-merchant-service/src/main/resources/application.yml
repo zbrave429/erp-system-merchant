@@ -38,12 +38,6 @@ mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-# redis
-redisson:
-  address: redis://127.0.0.1:6379
-  timeout: 1000
-  database: 0
-
 # nacos + dubbo
 dubbo:
   application: #当前这个应用的信息
@@ -76,6 +70,11 @@ dubbo:
     protocol: nacos
     username: nacos
     password: nacos
+
+nacos:
+  config:
+    server-addr: 127.0.0.1:8848
+    auto-refresh: true
 
 asynctask:
   timeout: 2

@@ -3,7 +3,6 @@ package com.brave.erp.system.merchant.api.dto;
 import lombok.Data;
 import org.apache.dubbo.apidocs.annotations.ResponseProperty;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,7 +15,6 @@ import java.util.Date;
 @Data
 public class ShopDto implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = 6499269203259998894L;
 
     @ResponseProperty("门店ID")

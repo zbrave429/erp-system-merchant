@@ -5,7 +5,6 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.dubbo.apidocs.annotations.ResponseProperty;
 
-import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -16,7 +15,6 @@ import java.io.Serializable;
  */
 public class BaseResponse<T> implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = -3474080406481968444L;
 
     /**

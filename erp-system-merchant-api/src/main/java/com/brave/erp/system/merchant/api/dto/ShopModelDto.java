@@ -2,7 +2,6 @@ package com.brave.erp.system.merchant.api.dto;
 
 import lombok.Data;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.Map;
 
@@ -14,7 +13,6 @@ import java.util.Map;
  */
 @Data
 public class ShopModelDto implements Serializable {
-    @Serial
     private static final long serialVersionUID = -9218898348847532598L;
 
     /**

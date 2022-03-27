@@ -15,9 +15,14 @@ import java.util.List;
  */
 @Slf4j
 @Component
-public record QueryShopAdaptorHandler(
-        List<AbstractBaseAdaptor<QueryShopContext>> queryShopAdaptors)
-{
+public class QueryShopAdaptorHandler{
+
+    private final List<AbstractBaseAdaptor<QueryShopContext>> queryShopAdaptors;
+
+    public QueryShopAdaptorHandler(List<AbstractBaseAdaptor<QueryShopContext>> queryShopAdaptors) {
+        this.queryShopAdaptors = queryShopAdaptors;
+    }
+
 
     public void queryShopById(QueryShopContext context) throws Exception {
         try {
