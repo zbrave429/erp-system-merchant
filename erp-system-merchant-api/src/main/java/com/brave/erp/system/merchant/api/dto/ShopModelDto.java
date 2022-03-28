@@ -1,6 +1,7 @@
 package com.brave.erp.system.merchant.api.dto;
 
 import lombok.Data;
+import org.apache.dubbo.apidocs.annotations.ResponseProperty;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -13,16 +14,19 @@ import java.util.Map;
  */
 @Data
 public class ShopModelDto implements Serializable {
+
     private static final long serialVersionUID = -9218898348847532598L;
 
     /**
      * 门店基础信息
      */
+    @ResponseProperty("门店基础信息")
     private ShopDto shopDto;
 
     /**
      * 门店扩展参数
      */
+    @ResponseProperty("门店扩展参数")
     private Map<String, String> extParam;
 
 }

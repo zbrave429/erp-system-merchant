@@ -80,4 +80,8 @@ asynctask:
   timeout: 2
   threadPrefix: LOCAL-ASYNC-TASK-POOL-THREAD-
 
+# 分页插件
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
 

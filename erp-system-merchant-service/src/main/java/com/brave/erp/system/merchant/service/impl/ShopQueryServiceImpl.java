@@ -1,10 +1,12 @@
 package com.brave.erp.system.merchant.service.impl;
 
-import com.brave.erp.system.merchant.api.dto.ShopDto;
 import com.brave.erp.system.merchant.api.dto.ShopModelDto;
 import com.brave.erp.system.merchant.api.enums.ErrCodeEnum;
+import com.brave.erp.system.merchant.api.request.ShopQueryListRequest;
+import com.brave.erp.system.merchant.api.request.ShopQueryPageRequest;
 import com.brave.erp.system.merchant.api.request.ShopQueryRequest;
 import com.brave.erp.system.merchant.api.response.BaseResponse;
+import com.brave.erp.system.merchant.api.response.PageResponse;
 import com.brave.erp.system.merchant.api.service.ShopQueryService;
 import com.brave.erp.system.merchant.service.annotation.WriteLog;
 import com.brave.erp.system.merchant.service.context.QueryShopContext;
@@ -45,7 +47,14 @@ public class ShopQueryServiceImpl implements ShopQueryService {
     }
 
     @Override
-    public BaseResponse<List<ShopDto>> queryListByIds(List<Long> ids) {
+    public BaseResponse<List<ShopModelDto>> queryListByIds(ShopQueryListRequest request) {
         return null;
     }
+
+    @Override
+    public BaseResponse<PageResponse<ShopModelDto>> queryPage(ShopQueryPageRequest request) {
+        return null;
+    }
+
+
 }
