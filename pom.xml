@@ -116,11 +116,6 @@
                 <optional>true</optional>
             </dependency>
             <dependency>
-                <artifactId>async-task</artifactId>
-                <groupId>cn.ygzhangmfh.util.task</groupId>
-                <version>1.0.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
                 <groupId>com.brave</groupId>
                 <artifactId>dubbo-trace</artifactId>
                 <version>${dubbo.trace.version}</version>

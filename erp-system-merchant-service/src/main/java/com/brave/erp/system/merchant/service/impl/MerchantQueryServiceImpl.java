@@ -1,6 +1,6 @@
 package com.brave.erp.system.merchant.service.impl;
 
-import cn.ygzhangmfh.util.task.AsyncFactory;
+import com.brave.dubbo.trace.thread.AsyncTaskFactory;
 import com.brave.erp.system.merchant.api.dto.MerchantDto;
 import com.brave.erp.system.merchant.api.enums.ErrCodeEnum;
 import com.brave.erp.system.merchant.api.response.BaseResponse;
@@ -48,8 +48,8 @@ public class MerchantQueryServiceImpl implements MerchantQueryService {
     public BaseResponse<MerchantDto> queryById(Long id) {
 
         try {
-            FutureTask<Merchant> merchantFuture = AsyncFactory.submit(() -> merchantMapper.selectByPrimaryKey(id));
-            FutureTask<List<MerchantExtParam>> merchantExtFuture = AsyncFactory.submit(() -> merchantExtParamMapper.selectByMerchantId(id));
+            FutureTask<Merchant> merchantFuture = AsyncTaskFactory.submit(() -> merchantMapper.selectByPrimaryKey(id));
+            FutureTask<List<MerchantExtParam>> merchantExtFuture = AsyncTaskFactory.submit(() -> merchantExtParamMapper.selectByMerchantId(id));
 
             Merchant merchant = merchantFuture.get();
             List<MerchantExtParam> merchantExtParams = merchantExtFuture.get();
@@ -78,8 +78,8 @@ public class MerchantQueryServiceImpl implements MerchantQueryService {
     public BaseResponse<List<MerchantDto>> queryListByIds(List<Long> ids) {
 
         try {
-            FutureTask<List<Merchant>> merchantsFuture = AsyncFactory.submit(() -> merchantMapper.selectListByIds(ids));
-            FutureTask<List<MerchantExtParam>> merchantExtFuture = AsyncFactory.submit(() -> merchantExtParamMapper.selectByMerchantIds(ids));
+            FutureTask<List<Merchant>> merchantsFuture = AsyncTaskFactory.submit(() -> merchantMapper.selectListByIds(ids));
+            FutureTask<List<MerchantExtParam>> merchantExtFuture = AsyncTaskFactory.submit(() -> merchantExtParamMapper.selectByMerchantIds(ids));
 
             List<Merchant> merchants = merchantsFuture.get();
             List<MerchantExtParam> merchantExtParams = merchantExtFuture.get();

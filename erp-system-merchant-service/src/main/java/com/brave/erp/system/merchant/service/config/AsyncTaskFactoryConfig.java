@@ -1,7 +1,7 @@
 package com.brave.erp.system.merchant.service.config;
 
-import cn.ygzhangmfh.util.task.AsyncConfig;
-import cn.ygzhangmfh.util.task.AsyncFactory;
+import com.brave.dubbo.trace.thread.AsyncTaskFactory;
+import com.brave.dubbo.trace.thread.ThreadPoolConfig;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ import javax.annotation.PreDestroy;
 @Component
 @ConfigurationProperties(prefix = "asynctask")
 @Data
-public class AsyncTaskConfig {
+public class AsyncTaskFactoryConfig {
 
     private int timeout;
 
@@ -26,13 +26,13 @@ public class AsyncTaskConfig {
 
     @PostConstruct
     private void init() {
-        AsyncConfig asyncConfig = new AsyncConfig(timeout, threadPrefix);
-        AsyncFactory.init(asyncConfig);
+        ThreadPoolConfig threadPoolConfig = new ThreadPoolConfig(timeout, threadPrefix);
+        AsyncTaskFactory.init(threadPoolConfig);
     }
 
     @PreDestroy
     private void destroy() {
-        AsyncFactory.destroy();
+        AsyncTaskFactory.destroy();
     }
 
 }

@@ -1,6 +1,6 @@
 package com.brave.erp.system.merchant.service.context.adaptor;
 
-import cn.ygzhangmfh.util.task.AsyncFactory;
+import com.brave.dubbo.trace.thread.AsyncTaskFactory;
 import com.brave.erp.system.merchant.api.enums.ShopDataFieldEnum;
 import com.brave.erp.system.merchant.service.context.QueryShopContext;
 import com.brave.erp.system.merchant.service.domain.Shop;
@@ -33,7 +33,7 @@ public class QueryShopBasicAdaptorImpl extends AbstractBaseAdaptor<QueryShopCont
     @Override
     public void pre() {
         QueryShopContext context = get();
-        FutureTask<Shop> shopFuture = AsyncFactory.submit(
+        FutureTask<Shop> shopFuture = AsyncTaskFactory.submit(
                 () -> shopMapper.selectByPrimaryKey(context.getRequest().getShopId()));
         context.setShopFuture(shopFuture);
     }
