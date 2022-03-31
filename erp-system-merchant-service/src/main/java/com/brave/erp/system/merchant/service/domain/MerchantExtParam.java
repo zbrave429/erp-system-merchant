@@ -35,4 +35,14 @@ public class MerchantExtParam {
     private String updateBy;
 
     private Date updateTime;
+
+    public MerchantExtParam() {
+    }
+
+    public MerchantExtParam(Long merchantId, String extCode, String extValue, String addBy) {
+        this.merchantId = merchantId;
+        this.extCode = extCode;
+        this.extValue = extValue;
+        this.addBy = addBy;
+    }
 }

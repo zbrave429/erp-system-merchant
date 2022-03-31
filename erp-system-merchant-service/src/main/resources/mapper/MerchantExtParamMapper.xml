@@ -55,6 +55,20 @@
       #{addBy,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
+
+  <insert id="batchInsert" keyColumn="id" keyProperty="id"
+          parameterType="com.brave.erp.system.merchant.service.domain.MerchantExtParam"
+          useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into merchant_ext_param (merchant_id, ext_code, ext_value,
+    add_by, add_time, update_by, update_time)
+    value
+    <foreach collection="list" item="item" separator=",">
+      (#{item.merchantId,jdbcType=BIGINT}, #{item.extCode,jdbcType=VARCHAR}, #{item.extValue,jdbcType=VARCHAR},
+      #{item.addBy,jdbcType=VARCHAR}, #{item.addTime,jdbcType=TIMESTAMP}, #{item.updateBy,jdbcType=VARCHAR},
+      #{item.updateTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.brave.erp.system.merchant.service.domain.MerchantExtParam" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into merchant_ext_param

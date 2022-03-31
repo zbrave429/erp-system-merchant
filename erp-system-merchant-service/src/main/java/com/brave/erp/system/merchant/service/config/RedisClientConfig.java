@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @NacosPropertySource(dataId = "redis-config", autoRefreshed = true,
-        properties = @NacosProperties(namespace = "redis-config"))
+        properties = @NacosProperties(namespace = "frame_global_config"))
 @Data
 @Slf4j
 public class RedisClientConfig {
@@ -30,6 +30,9 @@ public class RedisClientConfig {
     @NacosValue(value = "${redisson.database:0}", autoRefreshed = true)
     private int database;
 
+    @NacosValue(value = "${redisson.password:123456}", autoRefreshed = true)
+    private String password;
+
     @Bean
     public RedissonClient getRedisClient(){
         log.info("init redis useSingleServer, address={}, timeout={}, database={}", address, timeout, database);
@@ -37,7 +40,8 @@ public class RedisClientConfig {
         config.useSingleServer()
                 .setAddress(address)
                 .setDatabase(database)
-                .setTimeout(timeout);
+                .setTimeout(timeout)
+                .setPassword(password);
         return Redisson.create(config);
     }
 

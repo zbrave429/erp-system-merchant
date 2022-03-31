@@ -19,6 +19,13 @@ public interface MerchantExtParamMapper {
 
     int insertSelective(MerchantExtParam record);
 
+    /**
+     * 批量插入
+     * @param records
+     * @return
+     */
+    int batchInsert(List<MerchantExtParam> records);
+
     MerchantExtParam selectByPrimaryKey(Long id);
 
     List<MerchantExtParam> selectByMerchantId(Long merchantId);

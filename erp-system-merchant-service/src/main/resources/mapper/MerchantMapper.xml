@@ -48,7 +48,8 @@
     delete from merchant
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.brave.erp.system.merchant.service.domain.Merchant" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id"
+          parameterType="com.brave.erp.system.merchant.service.domain.Merchant" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into merchant (merchant_name, address, lng, 
       lat, merchant_type, `status`, 
@@ -63,7 +64,8 @@
       #{updateTime,jdbcType=TIMESTAMP}, #{desc,jdbcType=VARCHAR}, #{isDelete,jdbcType=BOOLEAN}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.brave.erp.system.merchant.service.domain.Merchant" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id"
+          parameterType="com.brave.erp.system.merchant.service.domain.Merchant" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into merchant
     <trim prefix="(" suffix=")" suffixOverrides=",">
