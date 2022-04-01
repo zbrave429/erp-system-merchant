@@ -46,6 +46,20 @@
     delete from merchant_ext_param
     where id = #{id,jdbcType=BIGINT}
   </delete>
+  <delete id="deleteByMerchantId" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from merchant_ext_param
+    where merchant_id = #{merchantId,jdbcType=BIGINT}
+  </delete>
+  <delete id="batchDeleteByExtCodes" >
+    <!--@mbg.generated-->
+    delete from merchant_ext_param
+    where merchant_id = #{merchantId,jdbcType=BIGINT}
+    and ext_code in
+    <foreach collection="extCodes" open="(" close=")" separator="," item="code">
+      #{code,jdbcType=VARCHAR}
+    </foreach>
+  </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.brave.erp.system.merchant.service.domain.MerchantExtParam" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into merchant_ext_param (merchant_id, ext_code, ext_value, 

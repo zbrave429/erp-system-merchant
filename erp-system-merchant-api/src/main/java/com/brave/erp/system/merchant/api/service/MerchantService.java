@@ -1,7 +1,7 @@
 package com.brave.erp.system.merchant.api.service;
 
-import com.brave.erp.system.merchant.api.dto.MerchantDto;
 import com.brave.erp.system.merchant.api.request.CreateMerchantRequest;
+import com.brave.erp.system.merchant.api.request.UpdateMerchantRequest;
 import com.brave.erp.system.merchant.api.response.BaseResponse;
 
 /**
@@ -24,7 +24,7 @@ public interface MerchantService {
      * @param request
      * @return
      */
-    BaseResponse<MerchantDto> updateMerchant(CreateMerchantRequest request);
+    BaseResponse<Boolean> updateMerchant(UpdateMerchantRequest request);
 
     /**
      * 删除商户

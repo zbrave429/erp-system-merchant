@@ -13,7 +13,13 @@ import java.util.List;
  */
 @Mapper
 public interface MerchantExtParamMapper {
+
     int deleteByPrimaryKey(Long id);
+
+    int deleteByMerchantId(Long merchantId);
+
+    int batchDeleteByExtCodes(@Param("merchantId") Long merchantId,
+                              @Param("extCodes") List<String> extCodes);
 
     int insert(MerchantExtParam record);
 
