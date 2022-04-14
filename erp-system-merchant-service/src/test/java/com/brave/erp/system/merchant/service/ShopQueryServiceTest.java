@@ -1,17 +1,21 @@
 package com.brave.erp.system.merchant.service;
 
-import com.brave.erp.system.merchant.api.dto.ShopDto;
 import com.brave.erp.system.merchant.api.dto.ShopModelDto;
+import com.brave.erp.system.merchant.api.enums.OrderByTypeEnum;
 import com.brave.erp.system.merchant.api.enums.ShopDataFieldEnum;
+import com.brave.erp.system.merchant.api.enums.ShopOrderByEnum;
+import com.brave.erp.system.merchant.api.request.ShopQueryListRequest;
 import com.brave.erp.system.merchant.api.request.ShopQueryRequest;
 import com.brave.erp.system.merchant.api.response.BaseResponse;
 import com.brave.erp.system.merchant.api.service.ShopQueryService;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 门店查询单测
@@ -40,7 +44,19 @@ public class ShopQueryServiceTest {
     }
 
     @Test
-    public BaseResponse<List<ShopDto>> queryListByIds(List<Long> ids) {
-        return null;
+    public void queryListByIds() {
+        ShopQueryListRequest request = new ShopQueryListRequest();
+        request.setShopIds(Lists.newArrayList(1L));
+        Map<String, String> orderBy = Maps.newHashMap();
+        orderBy.put(ShopOrderByEnum.ID.name(), OrderByTypeEnum.ASC.name());
+        orderBy.put(ShopOrderByEnum.ADD_TIME.name(), OrderByTypeEnum.ASC.name());
+        request.setOrderByFields(orderBy);
+        request.setShopDataFields(Lists.newArrayList(ShopDataFieldEnum.BASIC));
+
+        BaseResponse<List<ShopModelDto>> response = shopQueryService.queryListByIds(request);
+
+        System.out.println(response);
+
+
     }
 }

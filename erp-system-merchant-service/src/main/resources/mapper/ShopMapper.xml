@@ -33,6 +33,16 @@
     from shop
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="selectByIds" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from shop
+    where id in
+    <foreach collection="list" item="id" separator="," open="(" close=")">
+      #{id,jdbcType=BIGINT}
+    </foreach>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--@mbg.generated-->
     delete from shop

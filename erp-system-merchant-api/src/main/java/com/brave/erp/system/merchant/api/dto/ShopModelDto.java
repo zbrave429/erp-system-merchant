@@ -18,6 +18,12 @@ public class ShopModelDto implements Serializable {
     private static final long serialVersionUID = -9218898348847532598L;
 
     /**
+     * 门店ID
+     */
+    @ResponseProperty("门店ID")
+    private Long shopId;
+
+    /**
      * 门店基础信息
      */
     @ResponseProperty("门店基础信息")

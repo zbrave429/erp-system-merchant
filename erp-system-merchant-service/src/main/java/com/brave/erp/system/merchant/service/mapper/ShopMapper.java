@@ -3,6 +3,8 @@ package com.brave.erp.system.merchant.service.mapper;
 import com.brave.erp.system.merchant.service.domain.Shop;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * TODO
  *
@@ -18,6 +20,8 @@ public interface ShopMapper {
     int insertSelective(Shop record);
 
     Shop selectByPrimaryKey(Long id);
+
+    List<Shop> selectByIds(List<Long> ids);
 
     int updateByPrimaryKeySelective(Shop record);
 

@@ -27,7 +27,14 @@ public class ShopQueryListRequest implements Serializable {
     @RequestParam("查询数据集（返回结果数据）")
     private List<ShopDataFieldEnum> shopDataFields;
 
+    /**
+     * key
+     * @see ShopOrderByEnum
+     *
+     * value
+     * @see OrderByTypeEnum
+     */
     @RequestParam("查询排序字段")
-    private Map<ShopOrderByEnum, OrderByTypeEnum> orderByFields;
+    private Map<String, String> orderByFields;
 
 }

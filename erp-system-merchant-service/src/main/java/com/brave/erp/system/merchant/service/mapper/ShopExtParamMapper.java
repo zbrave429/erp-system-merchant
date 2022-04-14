@@ -22,6 +22,8 @@ public interface ShopExtParamMapper {
 
     List<ShopExtParam> selectListByShopId(Long shopId);
 
+    List<ShopExtParam> selectListByShopIds(List<Long> shopIds);
+
     int updateByPrimaryKeySelective(ShopExtParam record);
 
     int updateByPrimaryKey(ShopExtParam record);

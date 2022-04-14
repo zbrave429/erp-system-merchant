@@ -31,6 +31,16 @@
     from shop_ext_param
     where shop_id = #{shopId,jdbcType=BIGINT}
   </select>
+  <select id="selectListByShopIds" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from shop_ext_param
+    where shop_id in
+    <foreach collection="list" item="id" separator="," open="(" close=")" index="index" nullable="false">
+      #{id,jdbcType=BIGINT}
+    </foreach>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--@mbg.generated-->
     delete from shop_ext_param
