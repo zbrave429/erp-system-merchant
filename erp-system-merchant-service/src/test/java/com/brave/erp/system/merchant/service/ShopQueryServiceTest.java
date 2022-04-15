@@ -1,5 +1,6 @@
 package com.brave.erp.system.merchant.service;
 
+import com.brave.erp.system.merchant.api.dto.OrderByField;
 import com.brave.erp.system.merchant.api.dto.ShopModelDto;
 import com.brave.erp.system.merchant.api.enums.OrderByTypeEnum;
 import com.brave.erp.system.merchant.api.enums.ShopDataFieldEnum;
@@ -47,10 +48,12 @@ public class ShopQueryServiceTest {
     public void queryListByIds() {
         ShopQueryListRequest request = new ShopQueryListRequest();
         request.setShopIds(Lists.newArrayList(1L));
-        Map<String, String> orderBy = Maps.newHashMap();
-        orderBy.put(ShopOrderByEnum.ID.name(), OrderByTypeEnum.ASC.name());
-        orderBy.put(ShopOrderByEnum.ADD_TIME.name(), OrderByTypeEnum.ASC.name());
-        request.setOrderByFields(orderBy);
+        List<OrderByField> orderByFields = Lists.newArrayList(
+                OrderByField.asc(ShopOrderByEnum.UPDATE_TIME.name()),
+                OrderByField.desc(ShopOrderByEnum.ID.name()),
+                OrderByField.asc(ShopOrderByEnum.ADD_TIME.name()));
+
+        request.setOrderByFields(orderByFields);
         request.setShopDataFields(Lists.newArrayList(ShopDataFieldEnum.BASIC));
 
         BaseResponse<List<ShopModelDto>> response = shopQueryService.queryListByIds(request);

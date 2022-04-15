@@ -1,14 +1,12 @@
 package com.brave.erp.system.merchant.api.request;
 
-import com.brave.erp.system.merchant.api.enums.OrderByTypeEnum;
+import com.brave.erp.system.merchant.api.dto.OrderByField;
 import com.brave.erp.system.merchant.api.enums.ShopDataFieldEnum;
-import com.brave.erp.system.merchant.api.enums.ShopOrderByEnum;
 import lombok.Data;
 import org.apache.dubbo.apidocs.annotations.RequestParam;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 门店信息查询请求
@@ -28,13 +26,9 @@ public class ShopQueryListRequest implements Serializable {
     private List<ShopDataFieldEnum> shopDataFields;
 
     /**
-     * key
-     * @see ShopOrderByEnum
-     *
-     * value
-     * @see OrderByTypeEnum
+     * 查询排序字段
      */
     @RequestParam("查询排序字段")
-    private Map<String, String> orderByFields;
+    private List<OrderByField> orderByFields;
 
 }

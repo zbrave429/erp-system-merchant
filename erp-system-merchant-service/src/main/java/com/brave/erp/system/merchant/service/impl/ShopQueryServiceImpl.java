@@ -1,6 +1,6 @@
 package com.brave.erp.system.merchant.service.impl;
 
-import com.alibaba.nacos.common.utils.MapUtil;
+import com.alibaba.nacos.common.utils.CollectionUtils;
 import com.brave.erp.system.merchant.api.dto.ShopDto;
 import com.brave.erp.system.merchant.api.dto.ShopModelDto;
 import com.brave.erp.system.merchant.api.enums.ErrCodeEnum;
@@ -86,11 +86,13 @@ public class ShopQueryServiceImpl implements ShopQueryService {
         Map<Long, ShopDto> shopDtoMap = Maps.newHashMap();
         if(shopDataFields.contains(ShopDataFieldEnum.BASIC)){
             // 构造排序字符串
-            if(request.getOrderByFields() != null && !request.getOrderByFields().isEmpty()){
+            if(CollectionUtils.isNotEmpty(request.getOrderByFields())){
                 StringBuilder stringBuilder = new StringBuilder();
-                request.getOrderByFields().forEach((key, value) -> {
-                    stringBuilder.append(key).append(" ").append(value).append(",");
-                });
+                request.getOrderByFields().forEach(
+                        orderByField -> stringBuilder.append(orderByField.getFieldName())
+                                .append(" ")
+                                .append(orderByField.getOrderByType().name())
+                                .append(","));
                 stringBuilder.deleteCharAt(stringBuilder.length() - 1);
                 PageHelper.orderBy(stringBuilder.toString());
             }
