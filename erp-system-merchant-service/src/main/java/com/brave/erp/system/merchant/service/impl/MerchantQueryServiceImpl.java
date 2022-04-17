@@ -2,8 +2,10 @@ package com.brave.erp.system.merchant.service.impl;
 
 import com.brave.dubbo.trace.thread.AsyncTaskFactory;
 import com.brave.erp.system.merchant.api.dto.MerchantDto;
+import com.brave.erp.system.merchant.api.dto.MerchantModelDto;
 import com.brave.erp.system.merchant.api.enums.ErrCodeEnum;
 import com.brave.erp.system.merchant.api.response.BaseResponse;
+import com.brave.erp.system.merchant.api.response.PageResponse;
 import com.brave.erp.system.merchant.api.service.MerchantQueryService;
 import com.brave.erp.system.merchant.service.annotation.WriteLog;
 import com.brave.erp.system.merchant.service.domain.Merchant;
@@ -45,7 +47,7 @@ public class MerchantQueryServiceImpl implements MerchantQueryService {
 
     @Override
     @WriteLog("queryMerchantDtoById")
-    public BaseResponse<MerchantDto> queryById(Long id) {
+    public BaseResponse<MerchantModelDto> queryById(Long id) {
 
         try {
             FutureTask<Merchant> merchantFuture = AsyncTaskFactory.submit(() -> merchantMapper.selectByPrimaryKey(id));
@@ -54,19 +56,22 @@ public class MerchantQueryServiceImpl implements MerchantQueryService {
             Merchant merchant = merchantFuture.get();
             List<MerchantExtParam> merchantExtParams = merchantExtFuture.get();
 
-            MerchantDto merchantDto = new MerchantDto();
+            MerchantModelDto merchantModelDto = new MerchantModelDto();
 
+            MerchantDto merchantDto = new MerchantDto();
             if (Objects.isNull(merchant)){
                 return BaseResponse.buildError(ErrCodeEnum.DATA_NO_EXIST);
             }
             BeanUtils.copyProperties(merchant, merchantDto);
+            merchantModelDto.setMerchantId(id);
+            merchantModelDto.setMerchantDto(merchantDto);
 
             if(!CollectionUtils.isEmpty(merchantExtParams)){
-                merchantDto.setExtParam(merchantExtParams.stream().collect(
+                merchantModelDto.setExtParam(merchantExtParams.stream().collect(
                         Collectors.toMap(MerchantExtParam::getExtCode, MerchantExtParam::getExtValue)));
             }
 
-            return BaseResponse.defaultBuildSuccess(merchantDto);
+            return BaseResponse.defaultBuildSuccess(merchantModelDto);
         } catch (Exception e) {
             log.error("MerchantServiceImpl queryById error,id={}", id, e);
             return BaseResponse.buildError(ErrCodeEnum.SYSTEM_ERROR);
@@ -75,7 +80,7 @@ public class MerchantQueryServiceImpl implements MerchantQueryService {
 
     @Override
     @WriteLog("queryMerchantDtoListByIds")
-    public BaseResponse<List<MerchantDto>> queryListByIds(List<Long> ids) {
+    public BaseResponse<List<MerchantModelDto>> queryListByIds(List<Long> ids) {
 
         try {
             FutureTask<List<Merchant>> merchantsFuture = AsyncTaskFactory.submit(() -> merchantMapper.selectListByIds(ids));
@@ -85,16 +90,19 @@ public class MerchantQueryServiceImpl implements MerchantQueryService {
             List<MerchantExtParam> merchantExtParams = merchantExtFuture.get();
             Map<Long, List<MerchantExtParam>> extGroupById = groupByMerchantId(merchantExtParams);
 
-            List<MerchantDto> res = Lists.newArrayList();
+            List<MerchantModelDto> res = Lists.newArrayList();
 
             merchants.forEach(merchant -> {
+                MerchantModelDto merchantModelDto = new MerchantModelDto();
                 MerchantDto merchantDto = new MerchantDto();
                 BeanUtils.copyProperties(merchant, merchantDto);
+                merchantModelDto.setMerchantId(merchant.getId());
+                merchantModelDto.setMerchantDto(merchantDto);
                 if(extGroupById.containsKey(merchant.getId())){
-                    merchantDto.setExtParam(extGroupById.get(merchant.getId()).stream().collect(
+                    merchantModelDto.setExtParam(extGroupById.get(merchant.getId()).stream().collect(
                             Collectors.toMap(MerchantExtParam::getExtCode, MerchantExtParam::getExtValue)));
                 }
-                res.add(merchantDto);
+                res.add(merchantModelDto);
             });
 
             return BaseResponse.defaultBuildSuccess(res);
@@ -102,6 +110,11 @@ public class MerchantQueryServiceImpl implements MerchantQueryService {
             log.error("MerchantServiceImpl queryListByIds error,ids={}", ids, e);
             return BaseResponse.buildError(ErrCodeEnum.SYSTEM_ERROR);
         }
+    }
+
+    @Override
+    public BaseResponse<PageResponse<MerchantModelDto>> queryByPage(List<Long> ids) {
+        return null;
     }
 
     private Map<Long, List<MerchantExtParam>> groupByMerchantId(List<MerchantExtParam> merchantExtParams){

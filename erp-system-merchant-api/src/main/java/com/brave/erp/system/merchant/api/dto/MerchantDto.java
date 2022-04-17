@@ -82,8 +82,5 @@ public class MerchantDto implements Serializable {
     private String desc;
 
     private Boolean isDelete;
-    /**
-     * 扩展数据
-     */
-    private Map<String, String> extParam;
+
 }

@@ -1,20 +1,30 @@
 package com.brave.erp.system.merchant.api.service;
 
 import com.brave.erp.system.merchant.api.dto.MerchantDto;
+import com.brave.erp.system.merchant.api.dto.MerchantModelDto;
 import com.brave.erp.system.merchant.api.response.BaseResponse;
+import com.brave.erp.system.merchant.api.response.PageResponse;
+import org.apache.dubbo.apidocs.annotations.ApiDoc;
+import org.apache.dubbo.apidocs.annotations.ApiModule;
 
 import java.util.List;
 
 /**
- * 商户信息服务
+ * 商户查询信息服务
  *
  * @author <a href='1286998496@qq.com'>zhangyong</a>
  * @date 2022-03-17 22:20
  */
+@ApiModule(value = "商户查询信息服务", apiInterface = MerchantQueryService.class)
 public interface MerchantQueryService {
 
-    BaseResponse<MerchantDto> queryById(Long id);
+    @ApiDoc(value = "商户查询")
+    BaseResponse<MerchantModelDto> queryById(Long id);
 
-    BaseResponse<List<MerchantDto>> queryListByIds(List<Long> ids);
+    @ApiDoc(value = "商户批量查询")
+    BaseResponse<List<MerchantModelDto>> queryListByIds(List<Long> ids);
+
+    @ApiDoc(value = "分页查询")
+    BaseResponse<PageResponse<MerchantModelDto>> queryByPage(List<Long> ids);
 
 }

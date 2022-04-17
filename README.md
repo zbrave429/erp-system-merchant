@@ -14,21 +14,20 @@
 |              | 商户基础信息查询<br />（MerchantQueryService） | 单条数据查询(queryById)           |  ✅  |              |
 |              |                                                | 批量查询(queryListByIds)          |  ✅  |              |
 |              |                                                | 分页查询(queryByPage)             |  ❌  |              |
-| __门店管理__ | 门店基础信息管理接口<br />（ShopService）      | 新增                              |      |              |
-|              |                                                | 修改                              |      |              |
-|              |                                                | 删除                              |      |              |
+| __门店管理__ | 门店基础信息管理接口<br />（ShopService）      | 新增(createShop)                  |      |              |
+|              |                                                | 修改(updateShop)                  |      |              |
+|              |                                                | 删除(removeShop)                  |      |              |
 |              |                                                | 批量新增                          |      |              |
 |              | 门店基础信息查询接口<br />（ShopQueryService） | 根据门店ID查询单条记录(queryById) |  ✅  |      ✅      |
 |              |                                                | 批量多条件查询(queryListByIds)    |  ✅  |      ✅      |
 |              |                                                | 分页多条件查询(queryPage)         |  ✅  |      ✅      |
 |              |                                                |                                   |      |              |
-| __用户管理__ | 用户基础信息管理接口<br />（UserService）      | 新增                              |      |              |
-|              |                                                | 修改                              |      |              |
-|              |                                                | 删除                              |      |              |
+| __用户管理__ | 用户基础信息管理接口<br />（UserService）      | 新增(createUser)                  |      |              |
+|              |                                                | 修改(updateUser)                  |      |              |
+|              |                                                | 删除(removeUser)                  |      |              |
 |              | 用户基础信息查询接口<br />（UserQueryService） | 根据用户ID查询单条记录            |      |              |
 |              |                                                | 批量多条件查询查询                |      |              |
 |              |                                                | 分页多条件查询                    |      |              |
-|              |                                                |                                   |      |              |
 
 ---
 
@@ -43,3 +42,15 @@
 * mybatis 3.5.9
 
 ---
+
+### 3. 包说明
+
+#### 3.1 api包（erp-system-merchant-api）
+
+* dto - 数据模型
+* enums - 枚举
+* request - 请求参数模型
+* response - 响应参数模型
+* service - 服务接口定义
+
+#### 3.2 服务包（erp-system-merchant-service）
