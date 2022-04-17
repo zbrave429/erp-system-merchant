@@ -14,9 +14,9 @@
 |              | 商户基础信息查询<br />（MerchantQueryService） | 单条数据查询(queryById)           |  ✅  |              |
 |              |                                                | 批量查询(queryListByIds)          |  ✅  |              |
 |              |                                                | 分页查询(queryByPage)             |  ❌  |              |
-| __门店管理__ | 门店基础信息管理接口<br />（ShopService）      | 新增(createShop)                  |      |              |
-|              |                                                | 修改(updateShop)                  |      |              |
-|              |                                                | 删除(removeShop)                  |      |              |
+| __门店管理__ | 门店基础信息管理接口<br />（ShopService）      | 新增(createShop)                  |  ✅  |              |
+|              |                                                | 修改(updateShop)                  |  ✅  |              |
+|              |                                                | 删除(removeShop)                  |  ✅  |              |
 |              |                                                | 批量新增                          |      |              |
 |              | 门店基础信息查询接口<br />（ShopQueryService） | 根据门店ID查询单条记录(queryById) |  ✅  |      ✅      |
 |              |                                                | 批量多条件查询(queryListByIds)    |  ✅  |      ✅      |

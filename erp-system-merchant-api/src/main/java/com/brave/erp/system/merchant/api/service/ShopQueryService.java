@@ -5,7 +5,7 @@ import com.brave.erp.system.merchant.api.request.ShopQueryListRequest;
 import com.brave.erp.system.merchant.api.request.ShopQueryPageRequest;
 import com.brave.erp.system.merchant.api.request.ShopQueryRequest;
 import com.brave.erp.system.merchant.api.response.BaseResponse;
-import com.brave.erp.system.merchant.api.response.PageResponse;
+import com.brave.erp.system.merchant.api.response.PageResult;
 import org.apache.dubbo.apidocs.annotations.ApiDoc;
 import org.apache.dubbo.apidocs.annotations.ApiModule;
 import org.apache.dubbo.apidocs.annotations.RequestParam;
@@ -28,6 +28,6 @@ public interface ShopQueryService {
     BaseResponse<List<ShopModelDto>> queryListByIds(@RequestParam("查询请求参数")ShopQueryListRequest request);
 
     @ApiDoc("分页查询")
-    BaseResponse<PageResponse<ShopModelDto>> queryByPage(@RequestParam("查询请求参数")ShopQueryPageRequest request);
+    BaseResponse<PageResult<ShopModelDto>> queryByPage(@RequestParam("查询请求参数")ShopQueryPageRequest request);
 
 }

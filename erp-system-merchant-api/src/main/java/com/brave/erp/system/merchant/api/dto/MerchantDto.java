@@ -5,7 +5,6 @@ import org.apache.dubbo.apidocs.annotations.ResponseProperty;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Map;
 
 /**
  * 商户信息

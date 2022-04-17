@@ -6,7 +6,7 @@ import com.brave.erp.system.merchant.api.dto.MerchantModelDto;
 import com.brave.erp.system.merchant.api.enums.ErrCodeEnum;
 import com.brave.erp.system.merchant.api.request.MerchantQueryRequest;
 import com.brave.erp.system.merchant.api.response.BaseResponse;
-import com.brave.erp.system.merchant.api.response.PageResponse;
+import com.brave.erp.system.merchant.api.response.PageResult;
 import com.brave.erp.system.merchant.api.service.MerchantQueryService;
 import com.brave.erp.system.merchant.service.annotation.WriteLog;
 import com.brave.erp.system.merchant.service.domain.Merchant;
@@ -17,6 +17,7 @@ import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.HashMap;
@@ -34,6 +35,7 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @DubboService
+@Service
 public class MerchantQueryServiceImpl implements MerchantQueryService {
 
     private final MerchantMapper merchantMapper;
@@ -114,7 +116,7 @@ public class MerchantQueryServiceImpl implements MerchantQueryService {
     }
 
     @Override
-    public BaseResponse<PageResponse<MerchantModelDto>> queryByPage(List<Long> ids) {
+    public BaseResponse<PageResult<MerchantModelDto>> queryByPage(List<Long> ids) {
         return null;
     }
 

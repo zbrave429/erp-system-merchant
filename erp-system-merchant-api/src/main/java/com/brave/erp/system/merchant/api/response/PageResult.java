@@ -12,7 +12,7 @@ import java.util.List;
  * @date 2022-03-28 22:42
  */
 @Data
-public class PageResponse<T> implements Serializable {
+public class PageResult<T> implements Serializable {
 
     private static final long serialVersionUID = 8076668154712114910L;
 

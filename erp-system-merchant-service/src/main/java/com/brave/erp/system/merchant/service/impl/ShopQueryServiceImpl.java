@@ -10,7 +10,7 @@ import com.brave.erp.system.merchant.api.request.ShopQueryListRequest;
 import com.brave.erp.system.merchant.api.request.ShopQueryPageRequest;
 import com.brave.erp.system.merchant.api.request.ShopQueryRequest;
 import com.brave.erp.system.merchant.api.response.BaseResponse;
-import com.brave.erp.system.merchant.api.response.PageResponse;
+import com.brave.erp.system.merchant.api.response.PageResult;
 import com.brave.erp.system.merchant.api.service.ShopQueryService;
 import com.brave.erp.system.merchant.service.annotation.WriteLog;
 import com.brave.erp.system.merchant.service.context.QueryShopContext;
@@ -28,6 +28,7 @@ import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
@@ -40,6 +41,7 @@ import java.util.Map;
  */
 @Slf4j
 @DubboService
+@Service
 public class ShopQueryServiceImpl implements ShopQueryService {
 
     private final QueryShopAdaptorHandler queryShopAdaptorHandler;
@@ -132,9 +134,9 @@ public class ShopQueryServiceImpl implements ShopQueryService {
     }
 
     @Override
-    public BaseResponse<PageResponse<ShopModelDto>> queryByPage(ShopQueryPageRequest request) {
+    public BaseResponse<PageResult<ShopModelDto>> queryByPage(ShopQueryPageRequest request) {
 
-        PageResponse<ShopModelDto> result = new PageResponse<>();
+        PageResult<ShopModelDto> result = new PageResult<>();
 
         PageHelper.startPage(request.getPage().getPage(), request.getPage().getSize());
         OrderByUtil.orderBy(request.getOrderByFields(),

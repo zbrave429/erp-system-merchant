@@ -3,7 +3,7 @@ package com.brave.erp.system.merchant.api.service;
 import com.brave.erp.system.merchant.api.dto.MerchantModelDto;
 import com.brave.erp.system.merchant.api.request.MerchantQueryRequest;
 import com.brave.erp.system.merchant.api.response.BaseResponse;
-import com.brave.erp.system.merchant.api.response.PageResponse;
+import com.brave.erp.system.merchant.api.response.PageResult;
 import org.apache.dubbo.apidocs.annotations.ApiDoc;
 import org.apache.dubbo.apidocs.annotations.ApiModule;
 import org.apache.dubbo.apidocs.annotations.RequestParam;
@@ -26,6 +26,6 @@ public interface MerchantQueryService {
     BaseResponse<List<MerchantModelDto>> queryListByIds(List<Long> ids);
 
     @ApiDoc(value = "分页查询")
-    BaseResponse<PageResponse<MerchantModelDto>> queryByPage(List<Long> ids);
+    BaseResponse<PageResult<MerchantModelDto>> queryByPage(List<Long> ids);
 
 }

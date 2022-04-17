@@ -46,6 +46,20 @@
     delete from shop_ext_param
     where id = #{id,jdbcType=BIGINT}
   </delete>
+  <delete id="deleteByShopId" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from shop_ext_param
+    where shop_id = #{shopId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByShopIdAndCode" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from shop_ext_param
+    where shop_id = #{shopId,jdbcType=BIGINT}
+    and ext_code in
+    <foreach collection="extCodes" item="item" separator="," open="(" close=")">
+      #{item,jdbcType=VARCHAR}
+    </foreach>
+  </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.brave.erp.system.merchant.service.domain.ShopExtParam" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into shop_ext_param (shop_id, ext_code, ext_value, 
@@ -55,6 +69,20 @@
       #{addBy,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
+
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="com.brave.erp.system.merchant.service.domain.ShopExtParam" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into shop_ext_param (shop_id, ext_code, ext_value,
+    add_by, add_time, update_by,
+    update_time)
+    values
+    <foreach collection="list" item="shop" separator=",">
+      (#{shop.shopId,jdbcType=BIGINT}, #{shop.extCode,jdbcType=VARCHAR}, #{shop.extValue,jdbcType=VARCHAR},
+      #{shop.addBy,jdbcType=VARCHAR}, #{shop.addTime,jdbcType=TIMESTAMP}, #{shop.updateBy,jdbcType=VARCHAR},
+      #{shop.updateTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.brave.erp.system.merchant.service.domain.ShopExtParam" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into shop_ext_param

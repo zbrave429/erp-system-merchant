@@ -9,7 +9,7 @@ import com.brave.erp.system.merchant.api.request.ShopQueryListRequest;
 import com.brave.erp.system.merchant.api.request.ShopQueryPageRequest;
 import com.brave.erp.system.merchant.api.request.ShopQueryRequest;
 import com.brave.erp.system.merchant.api.response.BaseResponse;
-import com.brave.erp.system.merchant.api.response.PageResponse;
+import com.brave.erp.system.merchant.api.response.PageResult;
 import com.brave.erp.system.merchant.api.service.ShopQueryService;
 import com.google.common.collect.Lists;
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
  * @date 2022-03-18 22:37
  */
 @SpringBootTest
-public class ShopQueryServiceTest {
+public class ShopTest {
 
     @Autowired
     private ShopQueryService shopQueryService;
@@ -82,7 +82,7 @@ public class ShopQueryServiceTest {
         request.setMerchantId(1L);
 //        request.setOrderByFields(Lists.newArrayList(OrderByField.asc(ShopOrderByEnum.ID.name())));
 
-        BaseResponse<PageResponse<ShopModelDto>> response = shopQueryService.queryByPage(request);
+        BaseResponse<PageResult<ShopModelDto>> response = shopQueryService.queryByPage(request);
         System.out.println(response);
 
     }

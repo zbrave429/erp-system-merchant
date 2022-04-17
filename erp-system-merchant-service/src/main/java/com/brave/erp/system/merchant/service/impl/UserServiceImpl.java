@@ -4,6 +4,7 @@ import com.brave.erp.system.merchant.api.response.BaseResponse;
 import com.brave.erp.system.merchant.api.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
+import org.springframework.stereotype.Service;
 
 /**
  * TODO
@@ -13,6 +14,7 @@ import org.apache.dubbo.config.annotation.DubboService;
  */
 @Slf4j
 @DubboService
+@Service
 public class UserServiceImpl implements UserService {
 
     @Override

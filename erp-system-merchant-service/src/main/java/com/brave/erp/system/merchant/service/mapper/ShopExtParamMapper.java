@@ -2,6 +2,7 @@ package com.brave.erp.system.merchant.service.mapper;
 
 import com.brave.erp.system.merchant.service.domain.ShopExtParam;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,7 +15,14 @@ import java.util.List;
 public interface ShopExtParamMapper {
     int deleteByPrimaryKey(Long id);
 
+    int deleteByShopId(Long shopId);
+
+    int deleteByShopIdAndCode(@Param("shopId") Long shopId,
+                              @Param("extCodes") List<String> extCodes);
+
     int insert(ShopExtParam record);
+
+    int batchInsert(List<ShopExtParam> records);
 
     int insertSelective(ShopExtParam record);
 

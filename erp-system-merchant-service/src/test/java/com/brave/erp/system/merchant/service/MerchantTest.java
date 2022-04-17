@@ -26,7 +26,7 @@ import java.util.Map;
  * @date 2022-03-18 22:37
  */
 @SpringBootTest
-public class MerchantServiceTest {
+public class MerchantTest {
 
     @Autowired
     private MerchantService merchantService;
@@ -105,7 +105,9 @@ public class MerchantServiceTest {
 
         Assert.isTrue(before.isSuccess(), "订单查询失败");
 
-        merchantService.removeMerchant(id);
+        BaseResponse<Boolean> removeMerchant = merchantService.removeMerchant(id);
+
+        Assert.isTrue(removeMerchant.isSuccess() && removeMerchant.getResult(), "商户删除接口返回失败");
 
         BaseResponse<MerchantModelDto> response = merchantQueryService.queryById(MerchantQueryRequest.buildDefaultRequest(id));
 

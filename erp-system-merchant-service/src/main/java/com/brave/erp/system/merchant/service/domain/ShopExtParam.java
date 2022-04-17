@@ -1,6 +1,7 @@
 package com.brave.erp.system.merchant.service.domain;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -10,6 +11,7 @@ import java.util.Date;
  * @date 2022-03-17 22:11
  */
 @Data
+@NoArgsConstructor
 public class ShopExtParam {
     private Long id;
 
@@ -26,4 +28,10 @@ public class ShopExtParam {
     private String updateBy;
 
     private Date updateTime;
+
+    public ShopExtParam(Long shopId, String extCode, String extValue) {
+        this.shopId = shopId;
+        this.extCode = extCode;
+        this.extValue = extValue;
+    }
 }

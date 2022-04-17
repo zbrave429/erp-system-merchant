@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
@@ -29,6 +30,7 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @DubboService
+@Service
 public class MerchantServiceImpl implements MerchantService {
 
     @Autowired
