@@ -45,10 +45,17 @@
 
 ### 3. 包说明
 
-#### 3.1 api包（erp-system-merchant-api）
+#### 3.1 api包，接口调用方引入（erp-system-merchant-api）
+
+```java
+<dependency>
+    <groupId>com.brave</groupId>
+    <artifactId>erp-system-merchant-api</artifactId>
+</dependency>
+```
 
 * dto - 数据模型
-* enums - 枚举
+* enums - 相关枚举
 * request - 请求参数模型
 * response - 响应参数模型
 * service - 服务接口定义
