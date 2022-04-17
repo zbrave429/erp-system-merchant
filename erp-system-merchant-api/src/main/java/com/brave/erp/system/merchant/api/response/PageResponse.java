@@ -16,8 +16,14 @@ public class PageResponse<T> implements Serializable {
 
     private static final long serialVersionUID = 8076668154712114910L;
 
+    /**
+     * 本次查询返回记录
+     */
     private List<T> records;
 
-    private int totalPage;
+    /**
+     * 总记录数
+     */
+    private long total;
 
 }

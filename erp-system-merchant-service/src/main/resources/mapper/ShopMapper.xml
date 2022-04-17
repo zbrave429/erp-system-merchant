@@ -43,6 +43,12 @@
       #{id,jdbcType=BIGINT}
     </foreach>
   </select>
+  <select id="selectByPage" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from shop
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--@mbg.generated-->
     delete from shop

@@ -1,4 +1,4 @@
-package com.brave.erp.system.merchant.service.context.handle;
+package com.brave.erp.system.merchant.service.context.handler;
 
 import com.brave.erp.system.merchant.service.context.QueryShopContext;
 import com.brave.erp.system.merchant.service.context.adaptor.AbstractBaseAdaptor;

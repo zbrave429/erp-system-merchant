@@ -23,6 +23,8 @@ public interface ShopMapper {
 
     List<Shop> selectByIds(List<Long> ids);
 
+    List<Shop> selectByPage();
+
     int updateByPrimaryKeySelective(Shop record);
 
     int updateByPrimaryKey(Shop record);

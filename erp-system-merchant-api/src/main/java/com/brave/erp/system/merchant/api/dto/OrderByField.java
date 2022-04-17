@@ -3,6 +3,7 @@ package com.brave.erp.system.merchant.api.dto;
 import com.brave.erp.system.merchant.api.enums.OrderByTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class OrderByField {
 
     /**

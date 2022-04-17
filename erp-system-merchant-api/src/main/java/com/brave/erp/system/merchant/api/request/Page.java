@@ -1,6 +1,9 @@
 package com.brave.erp.system.merchant.api.request;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.apache.dubbo.apidocs.annotations.RequestParam;
 
 import java.io.Serializable;
@@ -12,6 +15,9 @@ import java.io.Serializable;
  * @date 2022-03-28 22:14
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
 public class Page implements Serializable {
 
     private static final long serialVersionUID = 8819447843592168785L;

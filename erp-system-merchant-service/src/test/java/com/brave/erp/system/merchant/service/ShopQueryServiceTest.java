@@ -5,9 +5,12 @@ import com.brave.erp.system.merchant.api.dto.ShopModelDto;
 import com.brave.erp.system.merchant.api.enums.OrderByTypeEnum;
 import com.brave.erp.system.merchant.api.enums.ShopDataFieldEnum;
 import com.brave.erp.system.merchant.api.enums.ShopOrderByEnum;
+import com.brave.erp.system.merchant.api.request.Page;
 import com.brave.erp.system.merchant.api.request.ShopQueryListRequest;
+import com.brave.erp.system.merchant.api.request.ShopQueryPageRequest;
 import com.brave.erp.system.merchant.api.request.ShopQueryRequest;
 import com.brave.erp.system.merchant.api.response.BaseResponse;
+import com.brave.erp.system.merchant.api.response.PageResponse;
 import com.brave.erp.system.merchant.api.service.ShopQueryService;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -17,6 +20,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * 门店查询单测
@@ -29,6 +33,16 @@ public class ShopQueryServiceTest {
 
     @Autowired
     private ShopQueryService shopQueryService;
+
+    public static void main(String[] args) {
+        System.out.println(123);
+        List<String> test = Lists.newArrayList("123","242", "234", "345");
+        List<String> collect = test.stream()
+                .filter(s -> Integer.parseInt(s) > 300)
+                .distinct()
+                .collect(Collectors.toList());
+        System.out.println(collect);
+    }
 
     @Test
     public void queryById() {
@@ -60,6 +74,18 @@ public class ShopQueryServiceTest {
 
         System.out.println(response);
 
+    }
+
+    @Test
+    public void queryPage(){
+
+        ShopQueryPageRequest request = new ShopQueryPageRequest();
+
+        request.setPage(new Page(1, 10));
+//        request.setOrderByFields(Lists.newArrayList(OrderByField.asc(ShopOrderByEnum.ID.name())));
+
+        BaseResponse<PageResponse<ShopModelDto>> response = shopQueryService.queryPage(request);
+        System.out.println(response);
 
     }
 }

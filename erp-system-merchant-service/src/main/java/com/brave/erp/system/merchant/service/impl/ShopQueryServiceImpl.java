@@ -1,10 +1,11 @@
 package com.brave.erp.system.merchant.service.impl;
 
-import com.alibaba.nacos.common.utils.CollectionUtils;
+import com.brave.erp.system.merchant.api.dto.OrderByField;
 import com.brave.erp.system.merchant.api.dto.ShopDto;
 import com.brave.erp.system.merchant.api.dto.ShopModelDto;
 import com.brave.erp.system.merchant.api.enums.ErrCodeEnum;
 import com.brave.erp.system.merchant.api.enums.ShopDataFieldEnum;
+import com.brave.erp.system.merchant.api.enums.ShopOrderByEnum;
 import com.brave.erp.system.merchant.api.request.ShopQueryListRequest;
 import com.brave.erp.system.merchant.api.request.ShopQueryPageRequest;
 import com.brave.erp.system.merchant.api.request.ShopQueryRequest;
@@ -13,12 +14,14 @@ import com.brave.erp.system.merchant.api.response.PageResponse;
 import com.brave.erp.system.merchant.api.service.ShopQueryService;
 import com.brave.erp.system.merchant.service.annotation.WriteLog;
 import com.brave.erp.system.merchant.service.context.QueryShopContext;
-import com.brave.erp.system.merchant.service.context.handle.QueryShopAdaptorHandler;
+import com.brave.erp.system.merchant.service.context.handler.QueryShopAdaptorHandler;
 import com.brave.erp.system.merchant.service.domain.Shop;
 import com.brave.erp.system.merchant.service.domain.ShopExtParam;
 import com.brave.erp.system.merchant.service.mapper.ShopExtParamMapper;
 import com.brave.erp.system.merchant.service.mapper.ShopMapper;
+import com.brave.erp.system.merchant.service.util.OrderByUtil;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
@@ -86,16 +89,7 @@ public class ShopQueryServiceImpl implements ShopQueryService {
         Map<Long, ShopDto> shopDtoMap = Maps.newHashMap();
         if(shopDataFields.contains(ShopDataFieldEnum.BASIC)){
             // 构造排序字符串
-            if(CollectionUtils.isNotEmpty(request.getOrderByFields())){
-                StringBuilder stringBuilder = new StringBuilder();
-                request.getOrderByFields().forEach(
-                        orderByField -> stringBuilder.append(orderByField.getFieldName())
-                                .append(" ")
-                                .append(orderByField.getOrderByType().name())
-                                .append(","));
-                stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-                PageHelper.orderBy(stringBuilder.toString());
-            }
+            OrderByUtil.orderBy(request.getOrderByFields());
             List<Shop> shopList = shopMapper.selectByIds(shopIds);
 
             shopList.forEach(shop -> {
@@ -138,8 +132,29 @@ public class ShopQueryServiceImpl implements ShopQueryService {
 
     @Override
     public BaseResponse<PageResponse<ShopModelDto>> queryPage(ShopQueryPageRequest request) {
-        return null;
-    }
 
+        PageResponse<ShopModelDto> result = new PageResponse<>();
+
+        PageHelper.startPage(request.getPage().getPage(), request.getPage().getSize());
+        OrderByUtil.orderBy(request.getOrderByFields(),
+                Lists.newArrayList(OrderByField.desc(ShopOrderByEnum.ID.name())));
+        List<Shop> shopList = shopMapper.selectByPage();
+        PageInfo<Shop> shopPageInfo = PageInfo.of(shopList);
+
+        result.setTotal(shopPageInfo.getTotal());
+
+        List<ShopModelDto> shopModelDtos = Lists.newArrayList();
+        shopList.forEach(shop -> {
+            ShopModelDto shopModelDto = new ShopModelDto();
+            ShopDto shopDto = new ShopDto();
+            BeanUtils.copyProperties(shop, shopDto);
+            shopModelDto.setShopId(shop.getId());
+            shopModelDto.setShopDto(shopDto);
+            shopModelDtos.add(shopModelDto);
+        });
+        result.setRecords(shopModelDtos);
+
+        return BaseResponse.defaultBuildSuccess(result);
+    }
 
 }
