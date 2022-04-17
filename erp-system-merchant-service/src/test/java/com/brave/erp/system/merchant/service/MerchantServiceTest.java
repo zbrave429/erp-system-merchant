@@ -4,6 +4,7 @@ import com.brave.erp.system.merchant.api.dto.MerchantModelDto;
 import com.brave.erp.system.merchant.api.enums.ErrCodeEnum;
 import com.brave.erp.system.merchant.api.enums.MerchantExtParamEnum;
 import com.brave.erp.system.merchant.api.request.CreateMerchantRequest;
+import com.brave.erp.system.merchant.api.request.MerchantQueryRequest;
 import com.brave.erp.system.merchant.api.request.UpdateMerchantRequest;
 import com.brave.erp.system.merchant.api.response.BaseResponse;
 import com.brave.erp.system.merchant.api.service.MerchantQueryService;
@@ -72,13 +73,14 @@ public class MerchantServiceTest {
     @Test
     public void updateMerchant(Long id) {
 
-        BaseResponse<MerchantModelDto> response = merchantQueryService.queryById(id);
+        BaseResponse<MerchantModelDto> response = merchantQueryService.queryById(MerchantQueryRequest.buildDefaultRequest(id));
 
         System.out.println(response);
 
         UpdateMerchantRequest request = new UpdateMerchantRequest();
 
-        BeanUtils.copyProperties(response.getResult(), request);
+        BeanUtils.copyProperties(response.getResult().getMerchantDto(), request);
+        request.setExtParam(response.getResult().getExtParam());
 
         String merchantName = "自动化测试商户_" + System.currentTimeMillis();
 
@@ -88,7 +90,7 @@ public class MerchantServiceTest {
 
         Assert.isTrue(updateMerchantRes.isSuccess() && updateMerchantRes.getResult(),"更新失败");
 
-        BaseResponse<MerchantModelDto> afterResponse = merchantQueryService.queryById(id);
+        BaseResponse<MerchantModelDto> afterResponse = merchantQueryService.queryById(MerchantQueryRequest.buildDefaultRequest(id));
 
         System.out.println(afterResponse);
 
@@ -99,13 +101,13 @@ public class MerchantServiceTest {
     @Test
     public void removeMerchant(Long id) {
 
-        BaseResponse<MerchantModelDto> before = merchantQueryService.queryById(id);
+        BaseResponse<MerchantModelDto> before = merchantQueryService.queryById(MerchantQueryRequest.buildDefaultRequest(id));
 
         Assert.isTrue(before.isSuccess(), "订单查询失败");
 
         merchantService.removeMerchant(id);
 
-        BaseResponse<MerchantModelDto> response = merchantQueryService.queryById(id);
+        BaseResponse<MerchantModelDto> response = merchantQueryService.queryById(MerchantQueryRequest.buildDefaultRequest(id));
 
         Assert.isTrue(!response.isSuccess()
                 && response.getCode() == ErrCodeEnum.DATA_NO_EXIST.getCode(), "删除失败");

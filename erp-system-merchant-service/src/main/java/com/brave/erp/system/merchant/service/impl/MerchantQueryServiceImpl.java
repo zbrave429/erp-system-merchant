@@ -4,6 +4,7 @@ import com.brave.dubbo.trace.thread.AsyncTaskFactory;
 import com.brave.erp.system.merchant.api.dto.MerchantDto;
 import com.brave.erp.system.merchant.api.dto.MerchantModelDto;
 import com.brave.erp.system.merchant.api.enums.ErrCodeEnum;
+import com.brave.erp.system.merchant.api.request.MerchantQueryRequest;
 import com.brave.erp.system.merchant.api.response.BaseResponse;
 import com.brave.erp.system.merchant.api.response.PageResponse;
 import com.brave.erp.system.merchant.api.service.MerchantQueryService;
@@ -47,11 +48,11 @@ public class MerchantQueryServiceImpl implements MerchantQueryService {
 
     @Override
     @WriteLog("queryMerchantDtoById")
-    public BaseResponse<MerchantModelDto> queryById(Long id) {
+    public BaseResponse<MerchantModelDto> queryById(MerchantQueryRequest request) {
 
         try {
-            FutureTask<Merchant> merchantFuture = AsyncTaskFactory.submit(() -> merchantMapper.selectByPrimaryKey(id));
-            FutureTask<List<MerchantExtParam>> merchantExtFuture = AsyncTaskFactory.submit(() -> merchantExtParamMapper.selectByMerchantId(id));
+            FutureTask<Merchant> merchantFuture = AsyncTaskFactory.submit(() -> merchantMapper.selectByPrimaryKey(request.getMerchantId()));
+            FutureTask<List<MerchantExtParam>> merchantExtFuture = AsyncTaskFactory.submit(() -> merchantExtParamMapper.selectByMerchantId(request.getMerchantId()));
 
             Merchant merchant = merchantFuture.get();
             List<MerchantExtParam> merchantExtParams = merchantExtFuture.get();
@@ -63,7 +64,7 @@ public class MerchantQueryServiceImpl implements MerchantQueryService {
                 return BaseResponse.buildError(ErrCodeEnum.DATA_NO_EXIST);
             }
             BeanUtils.copyProperties(merchant, merchantDto);
-            merchantModelDto.setMerchantId(id);
+            merchantModelDto.setMerchantId(request.getMerchantId());
             merchantModelDto.setMerchantDto(merchantDto);
 
             if(!CollectionUtils.isEmpty(merchantExtParams)){
@@ -73,7 +74,7 @@ public class MerchantQueryServiceImpl implements MerchantQueryService {
 
             return BaseResponse.defaultBuildSuccess(merchantModelDto);
         } catch (Exception e) {
-            log.error("MerchantServiceImpl queryById error,id={}", id, e);
+            log.error("MerchantServiceImpl queryById error,id={}", request.getMerchantId(), e);
             return BaseResponse.buildError(ErrCodeEnum.SYSTEM_ERROR);
         }
     }
