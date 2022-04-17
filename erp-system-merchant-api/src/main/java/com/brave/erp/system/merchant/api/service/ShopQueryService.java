@@ -28,6 +28,6 @@ public interface ShopQueryService {
     BaseResponse<List<ShopModelDto>> queryListByIds(@RequestParam("查询请求参数")ShopQueryListRequest request);
 
     @ApiDoc("分页查询")
-    BaseResponse<PageResponse<ShopModelDto>> queryPage(@RequestParam("查询请求参数")ShopQueryPageRequest request);
+    BaseResponse<PageResponse<ShopModelDto>> queryByPage(@RequestParam("查询请求参数")ShopQueryPageRequest request);
 
 }

@@ -2,7 +2,6 @@ package com.brave.erp.system.merchant.service;
 
 import com.brave.erp.system.merchant.api.dto.OrderByField;
 import com.brave.erp.system.merchant.api.dto.ShopModelDto;
-import com.brave.erp.system.merchant.api.enums.OrderByTypeEnum;
 import com.brave.erp.system.merchant.api.enums.ShopDataFieldEnum;
 import com.brave.erp.system.merchant.api.enums.ShopOrderByEnum;
 import com.brave.erp.system.merchant.api.request.Page;
@@ -13,13 +12,11 @@ import com.brave.erp.system.merchant.api.response.BaseResponse;
 import com.brave.erp.system.merchant.api.response.PageResponse;
 import com.brave.erp.system.merchant.api.service.ShopQueryService;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -82,9 +79,10 @@ public class ShopQueryServiceTest {
         ShopQueryPageRequest request = new ShopQueryPageRequest();
 
         request.setPage(new Page(1, 10));
+        request.setMerchantId(1L);
 //        request.setOrderByFields(Lists.newArrayList(OrderByField.asc(ShopOrderByEnum.ID.name())));
 
-        BaseResponse<PageResponse<ShopModelDto>> response = shopQueryService.queryPage(request);
+        BaseResponse<PageResponse<ShopModelDto>> response = shopQueryService.queryByPage(request);
         System.out.println(response);
 
     }

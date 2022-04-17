@@ -17,6 +17,7 @@ public class OrderByUtil {
 
     public static void orderBy(List<OrderByField> orderByFields){
         if(CollectionUtils.isNotEmpty(orderByFields)){
+            // todo 这里使用stringBuilder 来拼接效率更高
             String orderByStr = orderByFields.stream()
                     .distinct()
                     .map(orderByField -> orderByField.getFieldName() + " " + orderByField.getOrderByType().name())

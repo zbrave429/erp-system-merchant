@@ -17,6 +17,7 @@ import com.brave.erp.system.merchant.service.context.QueryShopContext;
 import com.brave.erp.system.merchant.service.context.handler.QueryShopAdaptorHandler;
 import com.brave.erp.system.merchant.service.domain.Shop;
 import com.brave.erp.system.merchant.service.domain.ShopExtParam;
+import com.brave.erp.system.merchant.service.helper.ShopQueryHelper;
 import com.brave.erp.system.merchant.service.mapper.ShopExtParamMapper;
 import com.brave.erp.system.merchant.service.mapper.ShopMapper;
 import com.brave.erp.system.merchant.service.util.OrderByUtil;
@@ -131,14 +132,14 @@ public class ShopQueryServiceImpl implements ShopQueryService {
     }
 
     @Override
-    public BaseResponse<PageResponse<ShopModelDto>> queryPage(ShopQueryPageRequest request) {
+    public BaseResponse<PageResponse<ShopModelDto>> queryByPage(ShopQueryPageRequest request) {
 
         PageResponse<ShopModelDto> result = new PageResponse<>();
 
         PageHelper.startPage(request.getPage().getPage(), request.getPage().getSize());
         OrderByUtil.orderBy(request.getOrderByFields(),
                 Lists.newArrayList(OrderByField.desc(ShopOrderByEnum.ID.name())));
-        List<Shop> shopList = shopMapper.selectByPage();
+        List<Shop> shopList = shopMapper.selectByPage(ShopQueryHelper.buildShopQueryParam(request));
         PageInfo<Shop> shopPageInfo = PageInfo.of(shopList);
 
         result.setTotal(shopPageInfo.getTotal());

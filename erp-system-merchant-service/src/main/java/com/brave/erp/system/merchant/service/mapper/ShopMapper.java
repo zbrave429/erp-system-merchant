@@ -1,6 +1,7 @@
 package com.brave.erp.system.merchant.service.mapper;
 
 import com.brave.erp.system.merchant.service.domain.Shop;
+import com.brave.erp.system.merchant.service.domain.query.ShopQueryParam;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public interface ShopMapper {
 
     List<Shop> selectByIds(List<Long> ids);
 
-    List<Shop> selectByPage();
+    List<Shop> selectByPage(ShopQueryParam shopQueryParam);
 
     int updateByPrimaryKeySelective(Shop record);
 

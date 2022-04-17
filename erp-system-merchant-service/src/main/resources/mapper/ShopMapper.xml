@@ -23,7 +23,7 @@
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, merchant_id, shop_name, shop_type, logo, `status`, is_master, address, add_by, 
+    id, merchant_id, shop_name, shop_type, logo, `status`, is_master, address, add_by,
     add_time, update_by, update_time, `desc`, is_delete, lng, lat
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -48,6 +48,11 @@
     select
     <include refid="Base_Column_List" />
     from shop
+    <where>
+      <if test="merchantId != null and merchantId > 0 ">
+        and merchant_id = #{merchantId,jdbcType=BIGINT}
+      </if>
+    </where>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--@mbg.generated-->
