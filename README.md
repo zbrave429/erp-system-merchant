@@ -62,6 +62,8 @@
 
 #### 3.2 服务包（erp-system-merchant-service）
 
-### 4. 接口参数校验使用说明
+### 4. 接口参数校验
 
-[接口参数校验注解说明文档](doc/validate-doc.md)
+实现方案参考：https://dubbo.apache.org/zh/docs/advanced/parameter-validation/
+
+注解说明：[接口参数校验注解说明文档](doc/validate-doc.md)

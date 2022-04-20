@@ -37,6 +37,7 @@ public class MerchantTest {
 
     /**
      * 可用于本地测试，通过dubbo调用接口
+     * 参考文档：https://dubbo.apache.org/zh/docs/advanced/explicit-target/
      */
     @DubboReference(url = "dubbo://localhost:20883", version = "1.0.1")
     private MerchantQueryService merchantQueryService;
