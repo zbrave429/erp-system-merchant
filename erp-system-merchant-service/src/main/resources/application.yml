@@ -60,6 +60,7 @@ dubbo:
     retries: -1 #重试次数 consumer
     delay: -1 #延迟到spring容器加载之后
     version: 1.0.1
+    validation: true
   monitor:
     protocol: registry
   config-center:

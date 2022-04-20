@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.dubbo.apidocs.annotations.RequestParam;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
@@ -25,9 +26,11 @@ public class MerchantQueryRequest implements Serializable {
     private static final long serialVersionUID = 4456990694565713886L;
 
     @RequestParam(value = "商户ID", required = true)
+    @NotNull
     private Long merchantId;
 
     @RequestParam(value = "查询数据集", required = true)
+    @NotNull
     private List<MerchantDataFieldEnum> dataFieldEnums;
 
     public static MerchantQueryRequest buildDefaultRequest(Long merchantId){

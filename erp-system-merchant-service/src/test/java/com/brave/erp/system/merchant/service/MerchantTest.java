@@ -11,6 +11,7 @@ import com.brave.erp.system.merchant.api.service.MerchantQueryService;
 import com.brave.erp.system.merchant.api.service.MerchantService;
 
 import com.google.common.collect.Maps;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,13 @@ public class MerchantTest {
     @Autowired
     private MerchantService merchantService;
 
-    @Autowired
+//    @Autowired
+//    private MerchantQueryService merchantQueryService;
+
+    /**
+     * 可用于本地测试，通过dubbo调用接口
+     */
+    @DubboReference(url = "dubbo://localhost:20883", version = "1.0.1")
     private MerchantQueryService merchantQueryService;
 
     @Test
@@ -113,6 +120,17 @@ public class MerchantTest {
 
         Assert.isTrue(!response.isSuccess()
                 && response.getCode() == ErrCodeEnum.DATA_NO_EXIST.getCode(), "删除失败");
+
+    }
+
+    @Test
+    public void queryMerchant(){
+
+        MerchantQueryRequest request = MerchantQueryRequest.buildDefaultRequest(null);
+
+        BaseResponse<MerchantModelDto> response = merchantQueryService.queryById(request);
+
+        System.out.println(response);
 
     }
 }

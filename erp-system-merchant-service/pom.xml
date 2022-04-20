@@ -16,6 +16,7 @@
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
+        <!-- api包 -->
         <dependency>
             <groupId>com.brave</groupId>
             <artifactId>erp-system-merchant-api</artifactId>
@@ -24,19 +25,24 @@
 <!--            <groupId>org.springframework.boot</groupId>-->
 <!--            <artifactId>spring-boot-starter-web</artifactId>-->
 <!--        </dependency>-->
+
+        <!-- springboot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+
+        <!-- 工具包 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -48,20 +54,30 @@
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
+        <!-- mysql数据库 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- redis，支持分布式锁 -->
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson-spring-boot-starter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
+
+        <!-- dubbo注册中心集成 -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
@@ -86,7 +102,6 @@
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-api-docs-annotations</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-api-docs-core</artifactId>
@@ -105,11 +120,8 @@
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-metadata-report-nacos</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
+
+        <!-- 调用链路追踪唯一标识 -->
         <dependency>
             <groupId>com.brave</groupId>
             <artifactId>dubbo-trace</artifactId>
@@ -120,6 +132,8 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- naocs配置中心接入 -->
         <dependency>
             <groupId>com.alibaba.boot</groupId>
             <artifactId>nacos-config-spring-boot-starter</artifactId>
@@ -130,14 +144,30 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- 分页查询 -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.4.2</version>
         </dependency>
+
+        <!-- kafka -->
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
+        </dependency>
+
+        <!-- dubbo接口参数校验 -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.2.3.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.el</artifactId>
+            <version>3.0.1-b12</version>
         </dependency>
     </dependencies>
 

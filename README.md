@@ -61,3 +61,7 @@
 * service - 服务接口定义
 
 #### 3.2 服务包（erp-system-merchant-service）
+
+### 4. 接口参数校验使用说明
+
+[接口参数校验注解说明文档](doc/validate-doc.md)
