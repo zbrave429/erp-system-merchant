@@ -13,3 +13,32 @@
 | NotBlank    | string         | 字符串trim()后length > 0   |
 |             |                |                            |
 |             |                |                            |
+
+### jar包引入
+
+注意：
+
+Service端必须要引入javax.el包，否则会出现以下报错
+
+javax.validation.ValidationException: HV000183: Unable to initialize 'javax.el.ExpressionFactory'. Check that you have the EL dependencies on the classpath, or use ParameterMessageInterpolator instead
+
+```java
+<!-- api -->
+<dependency>
+    <groupId>javax.validation</groupId>
+    <artifactId>validation-api</artifactId>
+    <version>2.0.1.Final</version>
+</dependency>
+
+<!-- service -->
+<dependency>
+    <groupId>org.hibernate.validator</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>6.2.3.Final</version>
+</dependency>
+<dependency>
+    <groupId>org.glassfish</groupId>
+    <artifactId>javax.el</artifactId>
+    <version>3.0.1-b12</version>
+</dependency>
+```
