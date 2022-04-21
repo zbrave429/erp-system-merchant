@@ -15,7 +15,6 @@ import org.apache.dubbo.config.annotation.DubboReference;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.Assert;
 
 import java.util.Map;
@@ -26,10 +25,12 @@ import java.util.Map;
  * @author <a href='1286998496@qq.com'>zhangyong</a>
  * @date 2022-03-18 22:37
  */
-@SpringBootTest
-public class MerchantTest {
+public class MerchantTest extends BaseTest{
 
-    @Autowired
+//    @Autowired
+//    private MerchantService merchantService;
+
+    @DubboReference(url = "dubbo://localhost:20883", version = "1.0.1")
     private MerchantService merchantService;
 
 //    @Autowired
@@ -127,7 +128,7 @@ public class MerchantTest {
     @Test
     public void queryMerchant(){
 
-        MerchantQueryRequest request = MerchantQueryRequest.buildDefaultRequest(null);
+        MerchantQueryRequest request = MerchantQueryRequest.buildDefaultRequest(1L);
 
         BaseResponse<MerchantModelDto> response = merchantQueryService.queryById(request);
 

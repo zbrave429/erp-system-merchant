@@ -25,8 +25,7 @@ import java.util.stream.Collectors;
  * @author <a href='1286998496@qq.com'>zhangyong</a>
  * @date 2022-03-18 22:37
  */
-@SpringBootTest
-public class ShopTest {
+public class ShopTest extends BaseTest {
 
     @Autowired
     private ShopQueryService shopQueryService;
