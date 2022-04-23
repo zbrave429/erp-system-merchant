@@ -6,7 +6,7 @@
 
 ### TODO
 
-> 完成状态图例： <font class="todo">TODO</font>
+> 完成状态图例： <font color=red class="todo">TODO</font>
 > <font style="color: white;background-color: #2080FF;text-align: center;border-radius: 5px;margin-right: 2px;margin-left: 2px;padding: 2px">DOING</font>
 > <font style="color: white;background-color: #48A838;text-align: center;border-radius: 5px;margin-right: 2px;margin-left: 2px;padding: 2px">DONE</font>
 > <font style="color: white;background-color: #EA4A4A;text-align: center;border-radius: 5px;margin-right: 2px;margin-left: 2px;padding: 2px">STOP</font>
