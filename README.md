@@ -1,22 +1,15 @@
-<link rel="stylesheet" type="text/css" href="doc/css/main.css"/>
-
 # 商户数据中心服务（MDC）
 
 基于dubbo3.x开发的微服务系统，包含微服务编程最佳实践，持续更新🚀️
 
 ### TODO
 
-> 完成状态图例： <font class="todo">TODO</font>
-> <font style="color: white;background-color: #2080FF;text-align: center;border-radius: 5px;margin-right: 2px;margin-left: 2px;padding: 2px">DOING</font>
-> <font style="color: white;background-color: #48A838;text-align: center;border-radius: 5px;margin-right: 2px;margin-left: 2px;padding: 2px">DONE</font>
-> <font style="color: white;background-color: #EA4A4A;text-align: center;border-radius: 5px;margin-right: 2px;margin-left: 2px;padding: 2px">STOP</font>
+> 完成状态图例： `🟡 TODO` `🔵 DOING` `🟢 DONE` `🔴 STOP`
 
-> 任务分类图例：
-
-| 状态                           | 任务分类 | 描述                         | 创建时间   | 完成时间 |
-| -------------------------------- | ---------- | ------------------------------ | ------------ | ---------- |
-| <font class="todo">TODO</font> | 需求     | 接口字段校验异常统一拦截处理 | 2022-04-23 |          |
-|                                |          |                              |            |          |
+| 状态      | 任务分类 | 描述                         | 创建时间   | 完成时间 |
+| ----------- | ---------- | ------------------------------ | ------------ | ---------- |
+| `🟡 TODO` | 需求     | 接口字段校验异常统一拦截处理 | 2022-04-23 |          |
+|           |          |                              |            |          |
 
 ### 1. 功能清单
 
