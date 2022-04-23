@@ -30,16 +30,6 @@ public class ShopTest extends BaseTest {
     @Autowired
     private ShopQueryService shopQueryService;
 
-    public static void main(String[] args) {
-        System.out.println(123);
-        List<String> test = Lists.newArrayList("123","242", "234", "345");
-        List<String> collect = test.stream()
-                .filter(s -> Integer.parseInt(s) > 300)
-                .distinct()
-                .collect(Collectors.toList());
-        System.out.println(collect);
-    }
-
     @Test
     public void queryById() {
 

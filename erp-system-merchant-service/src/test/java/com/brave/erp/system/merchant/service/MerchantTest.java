@@ -27,11 +27,11 @@ import java.util.Map;
  */
 public class MerchantTest extends BaseTest{
 
-//    @Autowired
-//    private MerchantService merchantService;
-
-    @DubboReference(url = "dubbo://localhost:20883", version = "1.0.1")
+    @Autowired
     private MerchantService merchantService;
+
+//    @DubboReference(url = "dubbo://localhost:20883", version = "1.0.1")
+//    private MerchantService merchantService;
 
 //    @Autowired
 //    private MerchantQueryService merchantQueryService;
@@ -39,8 +39,8 @@ public class MerchantTest extends BaseTest{
     /**
      * 可用于本地测试，通过dubbo调用接口
      * 参考文档：https://dubbo.apache.org/zh/docs/advanced/explicit-target/
-     */
-    @DubboReference(url = "dubbo://localhost:20883", version = "1.0.1")
+//     */
+    @DubboReference( version = "1.0.1")
     private MerchantQueryService merchantQueryService;
 
     @Test
@@ -128,7 +128,7 @@ public class MerchantTest extends BaseTest{
     @Test
     public void queryMerchant(){
 
-        MerchantQueryRequest request = MerchantQueryRequest.buildDefaultRequest(1L);
+        MerchantQueryRequest request = MerchantQueryRequest.buildDefaultRequest(null);
 
         BaseResponse<MerchantModelDto> response = merchantQueryService.queryById(request);
 

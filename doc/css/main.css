@@ -1,0 +1,39 @@
+.done{
+    color: white;
+    background-color: #FCC800;
+    text-align: center;
+    border-radius: 5px;
+    margin-right: 2px;
+    margin-left: 2px;
+    padding: 2px
+}
+
+.todo{
+    color: white;
+    background-color: #FCC800;
+    text-align: center;
+    border-radius: 5px;
+    margin-right: 2px;
+    margin-left: 2px;
+    padding: 2px
+}
+
+.doing{
+    color: white;
+    background-color: #FCC800;
+    text-align: center;
+    border-radius: 5px;
+    margin-right: 2px;
+    margin-left: 2px;
+    padding: 2px
+}
+
+.stop{
+    color: white;
+    background-color: #FCC800;
+    text-align: center;
+    border-radius: 5px;
+    margin-right: 2px;
+    margin-left: 2px;
+    padding: 2px
+}
